@@ -18,6 +18,14 @@ if (args.length > 0) {
 }
 
 const skus = {
+//	'MKGR3LL/A': '14" Si, Base',
+//  'MKGP3LL/A': '14" SG, Base',
+//  'MKGT3LL/A': '14" Si, Better',
+//  'MKGQ3LL/A': '14" SG, Better',
+//  'MMQX3LL/A': '14" Si, Ultimate',
+//  'MKH53LL/A': '14" SG, Ultimate',
+//  'MK1E3LL/A': '16" Si, Base',
+//  'MK183LL/A': '16" SG, Base',
   'MK1F3LL/A': '16" Si, Better',
   'MK193LL/A': '16" SG, Better',
   'MK1H3LL/A': '16" Si, Best',
