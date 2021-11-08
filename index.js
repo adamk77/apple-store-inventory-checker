@@ -2,11 +2,11 @@ const request = require('request');
 const notifier = require('node-notifier');
 
 const args = process.argv.slice(2);
-const favorites = ['MMQX3LL/A', 'MKH53LL/A', 'MK1A3LL/A', 'MK1H3LL/A'];
+const favorites = ['MK1F3LL/A', 'MK193LL/A', 'MK1H3LL/A', 'MK1A3LL/A', 'MK1A3LL/A', 'MK1H3LL/A'];
 const control = 'MYD92LL/A';
-const timeZone = 'America/Denver';
-let storeNumber = 'R172';
-let state = 'CO';
+const timeZone = 'America/New_York';
+let storeNumber = 'R010';
+let state = 'VA';
 
 if (args.length > 0) {
 	const passedStore = args[0];
@@ -18,14 +18,6 @@ if (args.length > 0) {
 }
 
 const skus = {
-  'MKGR3LL/A': '14" Si, Base',
-  'MKGP3LL/A': '14" SG, Base',
-  'MKGT3LL/A': '14" Si, Better',
-  'MKGQ3LL/A': '14" SG, Better',
-  'MMQX3LL/A': '14" Si, Ultimate',
-  'MKH53LL/A': '14" SG, Ultimate',
-  'MK1E3LL/A': '16" Si, Base',
-  'MK183LL/A': '16" SG, Base',
   'MK1F3LL/A': '16" Si, Better',
   'MK193LL/A': '16" SG, Better',
   'MK1H3LL/A': '16" Si, Best',
@@ -99,18 +91,19 @@ request(options, function (error, response) {
 
   if (inventory) {
     notificationMessage = `${hasUltimate ? 'FOUND ULTIMATE! ' : ''}Some models found: ${inventory}`;
+
+    const message = hasError ? 'Possible error?' : notificationMessage;
+	notifier.notify({
+	  title: 'MacBook Pro Availability',
+	  message: message,
+	  sound: hasError || inventory,
+	  timeout: false,
+	});
+
   } else {
     console.log(statusArray);
     notificationMessage = 'No models found.';
   }
-
-  const message = hasError ? 'Possible error?' : notificationMessage;
-  notifier.notify({
-    title: 'MacBook Pro Availability',
-    message: message,
-    sound: hasError || inventory,
-    timeout: false,
-  });
 
   // Log time at end
   console.log(new Date().toLocaleString('en-US', { timeZone }));
